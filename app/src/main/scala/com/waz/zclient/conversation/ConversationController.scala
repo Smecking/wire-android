@@ -22,7 +22,7 @@ import com.waz.api.{EphemeralExpiration, IConversation, Verification}
 import com.waz.model.ConversationData.ConversationType
 import com.waz.model._
 import com.waz.service.ZMessaging
-import com.waz.threading.{CancellableFuture, Threading}
+import com.waz.threading.{CancellableFuture, SerialDispatchQueue, Threading}
 import com.waz.utils.events.{EventContext, EventStream, Signal, SourceStream}
 import com.waz.zclient.controllers.UserAccountsController
 import com.waz.zclient.conversation.ConversationController.ConversationChange
@@ -45,7 +45,7 @@ import scala.concurrent.duration._
 import com.waz.utils._
 
 class ConversationController(implicit injector: Injector, context: Context, ec: EventContext) extends Injectable {
-  import Threading.Implicits.Background
+  private implicit val dispatcher = new SerialDispatchQueue(name = "ConversationController")
 
   private val zms = inject[Signal[ZMessaging]]
   private val userAccounts = inject[UserAccountsController]

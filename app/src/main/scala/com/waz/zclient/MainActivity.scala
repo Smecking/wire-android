@@ -314,6 +314,7 @@ class MainActivity extends BaseActivity
 
     intent match {
       case NotificationIntent(accountId, convId, startCall) =>
+        verbose(s"notification intent, accountId=$accountId, convId=$convId")
         val switchAccount = {
           val accounts = ZMessaging.currentAccounts
           accounts.activeAccount.head.flatMap {
