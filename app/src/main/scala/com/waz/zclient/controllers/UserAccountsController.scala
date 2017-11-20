@@ -96,12 +96,7 @@ class UserAccountsController(implicit injector: Injector, context: Context, ec: 
           z.convsUi.createGroupConversation(ConvId(), users, teamId)
     } yield conv
 
-    val conversationController = inject[ConversationController]
-    (for {
-      conv <- createConv
-      Some(loaded) <- conversationController.loadConv(conv.id) // is this necessary?
-      _ <- conversationController.selectConv(Some(loaded.id), requester)
-    } yield ())(Threading.Ui)
+    createConv.flatMap(conv => inject[ConversationController].selectConv(conv.id, requester))(Threading.Ui)
   }
 
   zms.map(_.teamId) { case teamId => _teamId = teamId }

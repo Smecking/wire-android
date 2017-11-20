@@ -72,7 +72,7 @@ public class FileUploadTest extends FragmentTest<MainTestActivity> {
         IConversation mockConversation = mock(IConversation.class);
         when(mockConversation.getType()).thenReturn(IConversation.Type.ONE_TO_ONE);
         when(mockConversation.isMemberOfConversation()).thenReturn(true);
-        when(mockConversation.isActive()).thenReturn(true);
+        //when(mockConversation.isActive()).thenReturn(true);
         MockHelper.setupConversationMocks(mockConversation, activity);
         IConversationStore mockConversationStore = activity.getStoreFactory().conversationStore();
 

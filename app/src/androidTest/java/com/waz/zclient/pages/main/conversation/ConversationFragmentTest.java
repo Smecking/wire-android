@@ -143,21 +143,21 @@ public class ConversationFragmentTest extends FragmentTest<MainTestActivity> {
         onView(withId(R.id.action_audio_call)).check(CustomViewAssertions.isNull());
     }
 
-    @Test
-    public void assertFileUploadIconVisibleInOneToOneConversation() throws InterruptedException {
-        IConversation mockConversation = mock(IConversation.class);
-        when(mockConversation.getType()).thenReturn(IConversation.Type.ONE_TO_ONE);
-        when(mockConversation.isMemberOfConversation()).thenReturn(true);
-        when(mockConversation.isActive()).thenReturn(true);
-
-        MockHelper.setupConversationMocks(mockConversation, activity);
-        attachFragment(ConversationFragment.apply(), ConversationFragment.TAG());
-
-        Thread.sleep(500);
-        onView(withId(R.id.cursor_menu_item_more)).perform(click());
-        Thread.sleep(500);
-        onView(withId(R.id.cursor_menu_item_file)).check(isVisible());
-    }
+//    @Test
+//    public void assertFileUploadIconVisibleInOneToOneConversation() throws InterruptedException {
+//        IConversation mockConversation = mock(IConversation.class);
+//        when(mockConversation.getType()).thenReturn(IConversation.Type.ONE_TO_ONE);
+//        when(mockConversation.isMemberOfConversation()).thenReturn(true);
+//        when(mockConversation.isActive()).thenReturn(true);
+//
+//        MockHelper.setupConversationMocks(mockConversation, activity);
+//        attachFragment(ConversationFragment.apply(), ConversationFragment.TAG());
+//
+//        Thread.sleep(500);
+//        onView(withId(R.id.cursor_menu_item_more)).perform(click());
+//        Thread.sleep(500);
+//        onView(withId(R.id.cursor_menu_item_file)).check(isVisible());
+//    }
 /*
     @Test
     public void assertFileUploadIconVisibleInGroupConversation() throws InterruptedException {
@@ -188,18 +188,18 @@ public class ConversationFragmentTest extends FragmentTest<MainTestActivity> {
         onView(withId(R.id.cursor_menu_item_audio_message)).check(isVisible());
     }*/
 
-    @Test
-    public void assertAudioMessageIconVisibleInGroupConversation() throws InterruptedException {
-        IConversation mockConversation = mock(IConversation.class);
-        when(mockConversation.getType()).thenReturn(IConversation.Type.GROUP);
-        when(mockConversation.isMemberOfConversation()).thenReturn(true);
-        when(mockConversation.isActive()).thenReturn(true);
-
-        MockHelper.setupConversationMocks(mockConversation, activity);
-        attachFragment(ConversationFragment.apply(), ConversationFragment.TAG());
-
-        onView(withId(R.id.cursor_menu_item_audio_message)).check(isVisible());
-    }
+//    @Test
+//    public void assertAudioMessageIconVisibleInGroupConversation() throws InterruptedException {
+//        IConversation mockConversation = mock(IConversation.class);
+//        when(mockConversation.getType()).thenReturn(IConversation.Type.GROUP);
+//        when(mockConversation.isMemberOfConversation()).thenReturn(true);
+//        when(mockConversation.isActive()).thenReturn(true);
+//
+//        MockHelper.setupConversationMocks(mockConversation, activity);
+//        attachFragment(ConversationFragment.apply(), ConversationFragment.TAG());
+//
+//        onView(withId(R.id.cursor_menu_item_audio_message)).check(isVisible());
+//    }
 /*
     @Test
     public void assertCursorImagesVisible() throws Exception {
@@ -247,36 +247,36 @@ public class ConversationFragmentTest extends FragmentTest<MainTestActivity> {
         // wait for camera changes
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void assertCursorImagesGalleryButton() throws Exception {
-        IConversation mockConversation = mock(IConversation.class);
-        when(mockConversation.getType()).thenReturn(IConversation.Type.GROUP);
-        when(mockConversation.isMemberOfConversation()).thenReturn(true);
-        when(mockConversation.isActive()).thenReturn(true);
-        IAccentColorController mockAccentColorController = activity.getControllerFactory().getAccentColorController();
-        AccentColor mockAccentColor = mock(AccentColor.class);
-        when(mockAccentColor.getColor()).thenReturn(Color.RED);
-        when(mockAccentColorController.getAccentColor()).thenReturn(mockAccentColor);
-
-        String action = Intent.ACTION_OPEN_DOCUMENT;
-        Matcher<Intent> expectedIntent = allOf(hasAction(action), hasType("image/*"));
-        Intent intent = new Intent();
-        intent.setData(Uri.parse("file:///tmp/whatever.txt"));
-        Instrumentation.ActivityResult result = new Instrumentation.ActivityResult(Activity.RESULT_OK, intent);
-        intending(expectedIntent).respondWith(result);
-
-        MockHelper.setupConversationMocks(mockConversation, activity);
-        attachFragment(ConversationFragment.apply(), ConversationFragment.TAG());
-
-        onView(withId(R.id.cursor_menu_item_camera)).check(isVisible());
-        onView(withId(R.id.cursor_menu_item_camera)).perform(click());
-        Thread.sleep(500);
-
-        onView(withId(R.id.rv__cursor_images)).check(isVisible());
-        onView(withId(R.id.gtv__cursor_image__nav_open_gallery)).check(isVisible());
-
-//        onView(withId(R.id.gtv__cursor_image__nav_open_gallery)).perform(click());
-    }
+//    @TargetApi(Build.VERSION_CODES.KITKAT)
+//    public void assertCursorImagesGalleryButton() throws Exception {
+//        IConversation mockConversation = mock(IConversation.class);
+//        when(mockConversation.getType()).thenReturn(IConversation.Type.GROUP);
+//        when(mockConversation.isMemberOfConversation()).thenReturn(true);
+//        when(mockConversation.isActive()).thenReturn(true);
+//        IAccentColorController mockAccentColorController = activity.getControllerFactory().getAccentColorController();
+//        AccentColor mockAccentColor = mock(AccentColor.class);
+//        when(mockAccentColor.getColor()).thenReturn(Color.RED);
+//        when(mockAccentColorController.getAccentColor()).thenReturn(mockAccentColor);
+//
+//        String action = Intent.ACTION_OPEN_DOCUMENT;
+//        Matcher<Intent> expectedIntent = allOf(hasAction(action), hasType("image/*"));
+//        Intent intent = new Intent();
+//        intent.setData(Uri.parse("file:///tmp/whatever.txt"));
+//        Instrumentation.ActivityResult result = new Instrumentation.ActivityResult(Activity.RESULT_OK, intent);
+//        intending(expectedIntent).respondWith(result);
+//
+//        MockHelper.setupConversationMocks(mockConversation, activity);
+//        attachFragment(ConversationFragment.apply(), ConversationFragment.TAG());
+//
+//        onView(withId(R.id.cursor_menu_item_camera)).check(isVisible());
+//        onView(withId(R.id.cursor_menu_item_camera)).perform(click());
+//        Thread.sleep(500);
+//
+//        onView(withId(R.id.rv__cursor_images)).check(isVisible());
+//        onView(withId(R.id.gtv__cursor_image__nav_open_gallery)).check(isVisible());
+//
+////        onView(withId(R.id.gtv__cursor_image__nav_open_gallery)).perform(click());
+//    }
 /*
     @Test
     public void assertGIFIconVisibleInOneToOneConversation() throws InterruptedException {
